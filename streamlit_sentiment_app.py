@@ -115,18 +115,59 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     """Load and train the sentiment analysis model."""
-    # Training data
+    # Expanded training data with more diverse examples
     train_text = [
         "I love this movie, it's great!",
         "This was a terrible film.",
         "The acting was amazing.",
         "I did not like the plot.",
         "What a fantastic ending!",
-        "It was boring and slow."
+        "It was boring and slow.",
+        "Good job on this project!",
+        "This is really bad quality.",
+        "Excellent work, well done!",
+        "Poor performance, very disappointed.",
+        "Good morning, have a nice day!",
+        "Awful experience, never again.",
+        "Great product, highly recommend!",
+        "Bad service, waste of time.",
+        "Good idea, I like it.",
+        "Horrible weather today.",
+        "Amazing results, very impressed!",
+        "Terrible customer support.",
+        "Good food, tasty and fresh.",
+        "Disgusting meal, cold and stale.",
+        "Wonderful experience, thank you!",
+        "Annoying and frustrating process.",
+        "Perfect solution, exactly what I needed!",
+        "Useless product, complete waste of money.",
+        "Good quality, value for money.",
+        "Bad design, very confusing.",
+        "Superb performance, outstanding work!",
+        "Dreadful service, completely disappointed.",
+        "Brilliant idea, love it!",
+        "Pathetic attempt, very poor.",
+        "Outstanding results, exceeded expectations!",
+        "Miserable experience, waste of money.",
+        "Fantastic quality, highly satisfied!",
+        "Deplorable conditions, unacceptable.",
+        "Superb customer service, very helpful!",
+        "Abysmal performance, total failure.",
+        "Marvelous work, keep it up!",
+        "Atrocious behavior, very rude.",
+        "Splendid job, well executed!",
+        "Mediocre at best, not impressed."
     ]
-    train_labels = [1, 0, 1, 0, 1, 0]
-    
-    # Create and train the model
+    train_labels = [
+        1, 0, 1, 0, 1, 0,  # Original 6 examples
+        1, 0, 1, 0, 1, 0,  # Good/bad examples
+        1, 0, 1, 0, 1, 0,  # Great/terrible examples
+        1, 0, 1, 0, 1, 0,  # Perfect/useless examples
+        1, 0,              # Final good/bad pair
+        1, 0, 1, 0, 1, 0,  # Superb/dreadful examples
+        1, 0, 1, 0, 1, 0,  # Outstanding/miserable examples
+        1, 0               # Splendid/mediocre examples
+    ]    # Create and train the model
     vectorizer = CountVectorizer()
     X_train_counts = vectorizer.fit_transform(train_text)
     
